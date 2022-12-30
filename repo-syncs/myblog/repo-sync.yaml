@@ -13,3 +13,7 @@ spec:
     releaseName: myblog
     auth: gcpserviceaccount
     gcpServiceAccountEmail: helm-charts-reader@acm-workshop-618-tenant.iam.gserviceaccount.com
+    values:
+      container:
+        image:
+          repository: 
