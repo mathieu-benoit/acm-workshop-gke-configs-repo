@@ -1,0 +1,15 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: AsmPeerAuthnMeshStrictMtls
+metadata:
+  name: mesh-level-strict-mtls
+  annotations:
+    policycontroller.gke.io/constraintData: |
+      "{
+        description: 'Enforce the mesh level strict mtls PeerAuthentication.',
+        remediation: 'The istio-system namespace should have a default PeerAuthentication with STRICT mTLS.'
+      }"
+spec:
+  enforcementAction: deny
+  parameters:
+    rootNamespace: istio-system
+    strictnessLevel: High

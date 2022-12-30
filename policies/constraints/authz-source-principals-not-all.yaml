@@ -1,0 +1,20 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: AsmAuthzPolicyEnforceSourcePrincipals
+metadata:
+  name: authz-source-principals-not-all
+  annotations:
+    policycontroller.gke.io/constraintData: |
+      "{
+        description: 'Requires that Istio AuthorizationPolicy "from" field, when defined, has source principles, which must be set to something other than "*".',
+        remediation: 'Any AuthorizationPolicies shouldn't define the "from" field with "*".'
+      }"
+spec:
+  enforcementAction: deny
+  match:
+    kinds:
+    - apiGroups:
+      - security.istio.io
+      kinds:
+      - AuthorizationPolicy
+    excludedNamespaces:
+      - asm-ingress

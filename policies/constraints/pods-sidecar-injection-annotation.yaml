@@ -1,0 +1,22 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: AsmSidecarInjection
+metadata:
+  name: pods-sidecar-injection-annotation
+  annotations:
+    policycontroller.gke.io/constraintData: |
+      "{
+        description: 'Enforce the istio proxy sidecar always been injected to workload pods.',
+        remediation: 'Any Pods shouldn't have the "sidecar.istio.io/inject" annotation set to "false".'
+      }"
+spec:
+  enforcementAction: deny
+  match:
+    kinds:
+    - apiGroups:
+      - ""
+      kinds:
+      - Pod
+    excludedNamespaces:
+    - kube-system # to exclude istio-cni pods
+  parameters:
+    strictnessLevel: High

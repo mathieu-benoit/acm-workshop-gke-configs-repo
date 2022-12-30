@@ -1,0 +1,21 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: AsmAuthzPolicyDisallowedPrefix
+metadata:
+  name: authz-source-principals-prefix-not-default
+  annotations:
+    policycontroller.gke.io/constraintData: |
+      "{
+        description: 'Requires that principals and namespaces in Istio AuthorizationPolicy rules not have a prefix from a specified list.',
+        remediation: 'Any AuthorizationPolicies shouldn't have the principal as "default".'
+      }"
+spec:
+  enforcementAction: deny
+  match:
+    kinds:
+    - apiGroups:
+      - security.istio.io
+      kinds:
+      - AuthorizationPolicy
+  parameters:
+    disallowedPrincipalPrefixes:
+    - default

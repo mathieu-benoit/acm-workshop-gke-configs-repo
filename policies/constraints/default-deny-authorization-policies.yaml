@@ -1,0 +1,15 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: AsmAuthzPolicyDefaultDeny
+metadata:
+  name: default-deny-authorization-policies
+  annotations:
+    policycontroller.gke.io/constraintData: |
+      "{
+        description: 'Enforce the mesh level default deny AuthorizationPolicy. Reference to https://istio.io/latest/docs/ops/best-practices/security/#use-default-deny-patterns.',
+        remediation: 'The istio-system namespace should have a default deny-all AuthorizationPolicy for the entire mesh.'
+      }"
+spec:
+  enforcementAction: deny
+  parameters:
+    rootNamespace: istio-system
+    strictnessLevel: High

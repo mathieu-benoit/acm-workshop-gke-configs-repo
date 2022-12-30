@@ -1,0 +1,21 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: AsmPeerAuthnStrictMtls
+metadata:
+  name: peerauthentication-strict-mtls
+  annotations:
+    policycontroller.gke.io/constraintData: |
+      "{
+        description: 'Enforce all PeerAuthentications cannot overwrite strict mtls.',
+        remediation: 'Any PeerAuthentications should have STRICT mTLS.'
+      }"
+spec:
+  enforcementAction: deny
+  match:
+    kinds:
+    - apiGroups:
+      - security.istio.io
+      kinds:
+      - PeerAuthentication
+  parameters:
+    rootNamespace: istio-system
+    strictnessLevel: High
