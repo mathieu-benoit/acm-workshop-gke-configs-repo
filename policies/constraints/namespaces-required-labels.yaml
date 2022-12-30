@@ -1,0 +1,31 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequiredLabels
+metadata:
+  name: namespaces-required-labels
+  annotations:
+    policycontroller.gke.io/constraintData: |
+      "{
+        description: 'Requires Namespaces to have the "name" label in order to leverage the namespaceSelector feature of NetworkPolicies.',
+        remediation: 'Any Namespaces should have the "name" label.'
+      }"
+spec:
+  enforcementAction: deny
+  match:
+    kinds:
+    - apiGroups:
+      - ""
+      kinds:
+      - Namespace
+    excludedNamespaces:
+    - config-management-monitoring
+    - config-management-system
+    - default
+    - gatekeeper-system
+    - istio-system
+    - kube-node-lease
+    - kube-public
+    - kube-system
+    - resource-group-system
+  parameters:
+    labels:
+    - key: name

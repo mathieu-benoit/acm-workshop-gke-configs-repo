@@ -1,0 +1,28 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequireNamespaceNetworkPolicies
+metadata:
+  name: namespaces-required-networkpolicies
+  annotations:
+    policycontroller.gke.io/constraintData: |
+      "{
+        description: 'Requires that every namespace defined in the cluster has NetworkPolicies.',
+        remediation: 'Any namespace should have NetworkPolicies. It's highly recommended to have at least a first default deny-all and then one fine granular NetworkPolicy per app.'
+      }"
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+    - apiGroups:
+      - ""
+      kinds:
+      - Namespace
+    excludedNamespaces:
+    - config-management-monitoring
+    - config-management-system
+    - default
+    - gatekeeper-system
+    - istio-system
+    - kube-node-lease
+    - kube-public
+    - kube-system
+    - resource-group-system
