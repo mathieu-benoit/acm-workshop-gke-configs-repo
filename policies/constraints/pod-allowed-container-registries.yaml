@@ -1,0 +1,26 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sAllowedRepos
+metadata:
+  name: pod-allowed-container-registries
+  annotations:
+    policycontroller.gke.io/constraintData: |
+      "{
+        description: 'Requires container images to begin with a string from the specified list.',
+        remediation: 'Any container images should begin with a string from the specified list, they are the only container registries allowed.'
+      }"
+spec:
+  enforcementAction: deny
+  match:
+    kinds:
+    - apiGroups:
+      - ""
+      kinds:
+      - Pod
+  parameters:
+    repos:
+    - auto
+    - gcr.io/config-management-release
+    - gcr.io/gke-release
+    - gke.gcr.io
+    - k8s.gcr.io
+    - northamerica-northeast1-docker.pkg.dev/acm-workshop-618-tenant/containers
