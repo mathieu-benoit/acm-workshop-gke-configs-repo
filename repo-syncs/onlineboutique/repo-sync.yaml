@@ -40,3 +40,5 @@ spec:
         create: true
       authorizationPolicies:
         create: true
+      networkPolicies:
+        create: true
