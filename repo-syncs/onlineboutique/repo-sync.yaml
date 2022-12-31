@@ -42,3 +42,5 @@ spec:
         create: true
       networkPolicies:
         create: true
+      sidecars:
+        create: true
