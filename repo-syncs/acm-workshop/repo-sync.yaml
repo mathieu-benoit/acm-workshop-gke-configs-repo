@@ -9,7 +9,7 @@ spec:
   helm:
     repo: oci://northamerica-northeast1-docker.pkg.dev/acm-workshop-618-tenant/charts
     chart: acm-workshop
-    version: 1.0.0-82be99a
+    version: 1.0.0-eefc39f
     releaseName: acm-workshop
     auth: gcpserviceaccount
     gcpServiceAccountEmail: helm-charts-reader@acm-workshop-618-tenant.iam.gserviceaccount.com
