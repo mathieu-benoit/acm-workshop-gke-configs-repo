@@ -12,7 +12,7 @@ spec:
     version: 0.5.0
     releaseName: onlineboutique
     auth: gcpserviceaccount
-    gcpServiceAccountEmail: helm-charts-reader@acm-workshop-618-tenant.iam.gserviceaccount.com
+    gcpServiceAccountEmail: @.iam.gserviceaccount.com
     values:
       cartDatabase:
         inClusterRedis:
@@ -36,3 +36,7 @@ spec:
             labelValue: ingressgateway
           hosts:
           - onlineboutique.endpoints.acm-workshop-618-tenant.cloud.goog
+      serviceAccounts:
+        create: true
+      authorizationPolicies:
+        create: true
