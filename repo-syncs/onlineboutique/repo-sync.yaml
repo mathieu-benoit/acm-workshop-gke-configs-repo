@@ -1,0 +1,38 @@
+apiVersion: configsync.gke.io/v1beta1
+kind: RepoSync
+metadata:
+  name: repo-sync
+  namespace: onlineboutique
+spec:
+  sourceFormat: unstructured
+  sourceType: helm
+  helm:
+    repo: oci://northamerica-northeast1-docker.pkg.dev/acm-workshop-618-tenant/charts
+    chart: onlineboutique
+    version: 0.5.0
+    releaseName: onlineboutique
+    auth: gcpserviceaccount
+    gcpServiceAccountEmail: @.iam.gserviceaccount.com
+    values:
+      cartDatabase:
+        inClusterRedis:
+          publicRepository: false
+      images:
+        repository: northamerica-northeast1-docker.pkg.dev/acm-workshop-618-tenant/containers/onlineboutique
+        tag: v0.5.0
+      nativeGrpcHealthCheck: true
+      seccompProfile:
+        enable: true
+      loadGenerator:
+        checkFrontendInitContainer: false
+      frontend:
+        externalService: false
+        virtualService:
+          create: true
+          gateway:
+            name: asm-ingressgateway
+            namespace: asm-ingress
+            labelKey: asm
+            labelValue: ingressgateway
+          hosts:
+          - onlineboutique.endpoints.acm-workshop-618-tenant.cloud.goog
