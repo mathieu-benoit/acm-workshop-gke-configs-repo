@@ -1,0 +1,8 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: bankofanthos
+  namespace: asm-ingress
+spec:
+  domains:
+    - "bankofanthos.endpoints.acm-workshop-618-tenant.cloud.goog"
