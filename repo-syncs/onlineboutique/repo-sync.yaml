@@ -19,7 +19,7 @@ spec:
           publicRepository: false
       images:
         repository: northamerica-northeast1-docker.pkg.dev/acm-workshop-618-tenant/containers/onlineboutique
-        tag: v0.5.0
+        tag: v0.5.0-1
       nativeGrpcHealthCheck: true
       seccompProfile:
         enable: true
