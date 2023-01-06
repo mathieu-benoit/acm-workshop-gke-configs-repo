@@ -16,7 +16,8 @@ spec:
     values:
       cartDatabase:
         inClusterRedis:
-          publicRepository: false
+          create: false
+        connectionString: 10.239.192.227:6379
       images:
         repository: northamerica-northeast1-docker.pkg.dev/acm-workshop-618-tenant/containers/onlineboutique
         tag: v0.5.0
