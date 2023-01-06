@@ -42,7 +42,7 @@ spec:
         create: true
         annotationsOnlyForCartservice: true
         annotations:
-        - iam.gke.io/gcp-service-account: spanner-db-user@acm-workshop-618-tenant.iam.gserviceaccount.com
+          iam.gke.io/gcp-service-account: spanner-db-user@acm-workshop-618-tenant.iam.gserviceaccount.com
       authorizationPolicies:
         create: true
       networkPolicies:
