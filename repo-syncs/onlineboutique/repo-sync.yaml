@@ -17,7 +17,7 @@ spec:
       cartDatabase:
         inClusterRedis:
           create: false
-        connectionString: 10.239.192.227:6379
+        connectionString: 10.24.184.43:6378
         externalRedisTlsOrigination:
           enable: true
           certificate: "-----BEGIN CERTIFICATE-----
@@ -42,8 +42,8 @@ gYy/pJfVmGJD0+djBDOE+C2jtYDPGuLmRzamFCvwN2kRVQfSWshlssfyjNnH8Q47
 jtfTO5j+eYQa2KeApdCN44zqxfCaZw0RvwR4WkFOJrKLCm4xykK3YaEPseX+JWti
 5al77W2M1plmlFWNadHRviU=
 -----END CERTIFICATE-----"
-          endpointAddress: 10.239.192.227
-          endpointPort: 6379
+          endpointAddress: 10.24.184.43
+          endpointPort: 6378
       images:
         repository: northamerica-northeast1-docker.pkg.dev/acm-workshop-618-tenant/containers/onlineboutique
         tag: v0.5.0
