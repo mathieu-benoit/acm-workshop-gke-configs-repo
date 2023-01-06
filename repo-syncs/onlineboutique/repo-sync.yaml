@@ -9,7 +9,7 @@ spec:
   helm:
     repo: oci://northamerica-northeast1-docker.pkg.dev/acm-workshop-618-tenant/charts
     chart: onlineboutique
-    version: 0.5.0
+    version: 0.5.0-2
     releaseName: onlineboutique
     auth: gcpserviceaccount
     gcpServiceAccountEmail: helm-charts-reader@acm-workshop-618-tenant.iam.gserviceaccount.com
@@ -20,7 +20,7 @@ spec:
         connectionString: 10.24.184.43:6378
         externalRedisTlsOrigination:
           enable: true
-          certificate: "-----BEGIN CERTIFICATE-----
+          certificate: '-----BEGIN CERTIFICATE-----
 MIIDnTCCAoWgAwIBAgIBADANBgkqhkiG9w0BAQsFADCBhTEtMCsGA1UELhMkNDM0
 ZmM0OTMtOGY3Mi00NDc5LWIyZmQtZjU0MzQ3OTVkM2Q3MTEwLwYDVQQDEyhHb29n
 bGUgQ2xvdWQgTWVtb3J5c3RvcmUgUmVkaXMgU2VydmVyIENBMRQwEgYDVQQKEwtH
@@ -41,7 +41,7 @@ WJGxxvi7mnDwgDDY87MRkIz5qYk1oJL3ME8KikI2KFUjGYBDh4dasgigqqWvBCtt
 gYy/pJfVmGJD0+djBDOE+C2jtYDPGuLmRzamFCvwN2kRVQfSWshlssfyjNnH8Q47
 jtfTO5j+eYQa2KeApdCN44zqxfCaZw0RvwR4WkFOJrKLCm4xykK3YaEPseX+JWti
 5al77W2M1plmlFWNadHRviU=
------END CERTIFICATE-----"
+-----END CERTIFICATE-----'
           endpointAddress: 10.24.184.43
           endpointPort: 6378
       images:
