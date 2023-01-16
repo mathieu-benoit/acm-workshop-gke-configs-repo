@@ -1,12 +1,12 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sRequiredLabels
 metadata:
-  name: namespaces-required-labels
+  name: pods-required-app-label
   annotations:
     policycontroller.gke.io/constraintData: |
       "{
-        description: 'Requires Namespaces to have the "name" label in order to leverage the namespaceSelector feature of NetworkPolicies.',
-        remediation: 'Any Namespaces should have the "name" label.'
+        description: 'Requires Pods to have the name "app" in order to leverage the podSelector feature of NetworkPolicies.',
+        remediation: 'Any Pods should have the "app" label.'
       }"
 spec:
   enforcementAction: deny
@@ -15,13 +15,12 @@ spec:
     - apiGroups:
       - ""
       kinds:
-      - Namespace
+      - Pod
     excludedNamespaces:
     - config-management-monitoring
     - config-management-system
     - default
     - gatekeeper-system
-    - istio-system
     - kube-node-lease
     - kube-public
     - kube-system
@@ -29,4 +28,4 @@ spec:
     - poco-trial
   parameters:
     labels:
-    - key: name
+    - key: app

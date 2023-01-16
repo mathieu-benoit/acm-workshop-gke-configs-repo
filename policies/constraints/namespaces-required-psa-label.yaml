@@ -1,12 +1,12 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sRequiredAnnotations
+kind: K8sRequiredLabels
 metadata:
-  name: namespaces-required-annotations
+  name: namespaces-required-psa-label
   annotations:
     policycontroller.gke.io/constraintData: |
       "{
-        description: 'Requires Namespaces to have the "pod-security.kubernetes.io/enforce" annotation with either the value "baseline" or "restricted".',
-        remediation: 'Any Namespaces should have the "pod-security.kubernetes.io/enforce" annotation with either the value "baseline" or "restricted".'
+        description: 'Requires Namespaces to have the "pod-security.kubernetes.io/enforce" label with either the value "baseline" or "restricted".',
+        remediation: 'Any Namespaces should have the "pod-security.kubernetes.io/enforce" label with either the value "baseline" or "restricted".'
       }"
 spec:
   enforcementAction: deny
@@ -28,6 +28,6 @@ spec:
     - resource-group-system
     - poco-trial
   parameters:
-    annotations:
+    labels:
     - key: pod-security.kubernetes.io/enforce
       allowedRegex: (baseline|restricted)
