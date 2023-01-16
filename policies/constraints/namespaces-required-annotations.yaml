@@ -30,4 +30,4 @@ spec:
   parameters:
     annotations:
     - key: pod-security.kubernetes.io/enforce
-      allowRegex: (baseline|restricted)
+      allowedRegex: (baseline|restricted)
