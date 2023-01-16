@@ -4,5 +4,5 @@ metadata:
   labels:
     name: whereami
     istio-injection: enabled
-    pod-security.kubernetes.io/enforce: baseline
+    pod-security.kubernetes.io/enforce: restricted
   name: whereami
