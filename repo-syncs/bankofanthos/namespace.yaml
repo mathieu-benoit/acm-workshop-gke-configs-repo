@@ -4,4 +4,5 @@ metadata:
   labels:
     name: bankofanthos
     istio-injection: enabled
+    pod-security.kubernetes.io/enforce: baseline
   name: bankofanthos
