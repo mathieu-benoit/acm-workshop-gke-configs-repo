@@ -1,0 +1,33 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequiredAnnotations
+metadata:
+  name: namespaces-required-annotations
+  annotations:
+    policycontroller.gke.io/constraintData: |
+      "{
+        description: 'Requires Namespaces to have the "pod-security.kubernetes.io/enforce" annotation with either the value "baseline" or "restricted".',
+        remediation: 'Any Namespaces should have the "pod-security.kubernetes.io/enforce" annotation with either the value "baseline" or "restricted".'
+      }"
+spec:
+  enforcementAction: deny
+  match:
+    kinds:
+    - apiGroups:
+      - ""
+      kinds:
+      - Namespace
+    excludedNamespaces:
+    - config-management-monitoring
+    - config-management-system
+    - default
+    - gatekeeper-system
+    - istio-system
+    - kube-node-lease
+    - kube-public
+    - kube-system
+    - resource-group-system
+    - poco-trial
+  parameters:
+    annotations:
+    - key: pod-security.kubernetes.io/enforce
+      allowRegex: (baseline|restricted)
