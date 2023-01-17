@@ -9,7 +9,7 @@ spec:
   helm:
     repo: oci://northamerica-northeast1-docker.pkg.dev/acm-workshop-618-tenant/charts
     chart: onlineboutique
-    version: 0.5.0-1
+    version: 0.5.0-2
     releaseName: onlineboutique
     auth: gcpserviceaccount
     gcpServiceAccountEmail: helm-charts-reader@acm-workshop-618-tenant.iam.gserviceaccount.com
