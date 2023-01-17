@@ -9,7 +9,7 @@ spec:
   helm:
     repo: oci://northamerica-northeast1-docker.pkg.dev/acm-workshop-618-tenant/charts
     chart: myblog
-    version: 1.0.0-5693b67
+    version: 1.0.0-f54731f
     releaseName: myblog
     auth: gcpserviceaccount
     gcpServiceAccountEmail: helm-charts-reader@acm-workshop-618-tenant.iam.gserviceaccount.com
