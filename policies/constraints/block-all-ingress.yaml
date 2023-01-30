@@ -1,0 +1,16 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sBlockAllIngress
+metadata:
+  name: block-all-ingress
+  annotations:
+    policycontroller.gke.io/constraintData: |
+      "{
+        description: 'Disallows the creation of Ingress objects (Ingress, Gateway, and Service types of NodePort and LoadBalancer).',
+        remediation: 'Any Ingress objects (Ingress, Gateway, and Service) should go through the ASM Ingress Gateway instead.'
+      }"
+spec:
+  enforcementAction: deny
+  match:
+    excludedNamespaces:
+    - kube-system # default-http-backend as NodePort
+    - asm-ingress # asm-ingressgateway as LoadBalancer
