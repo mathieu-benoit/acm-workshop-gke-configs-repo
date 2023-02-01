@@ -3,7 +3,7 @@ kind: ConstraintTemplate
 metadata:
   name: virtualservicewithhost
   annotations:
-    description: "Requirements for any GKE cluster."
+    description: "VirtualService shouldn't define the "hosts" with "*"."
 spec:
   crd:
     spec:
@@ -16,7 +16,7 @@ spec:
         # spec.hosts does not exist
         violation[{"msg": msg}] {
           is_virtualservice(input.review.kind)
-          not hosts
+          not input.review.object.spec.hosts
           msg := "hosts does not exist"
         }
         # spec.hosts does not contain '*'
