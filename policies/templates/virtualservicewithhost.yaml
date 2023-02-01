@@ -3,7 +3,7 @@ kind: ConstraintTemplate
 metadata:
   name: virtualservicewithhost
   annotations:
-    description: "VirtualService shouldn't define the "hosts" with "*"."
+    description: "VirtualService shouldn't define the hosts with *."
 spec:
   crd:
     spec:
