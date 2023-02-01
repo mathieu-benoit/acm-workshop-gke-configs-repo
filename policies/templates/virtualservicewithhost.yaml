@@ -1,0 +1,35 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: virtualservicewithhost
+  annotations:
+    description: "VirtualService shouldn't define the "hosts" with "*"."
+spec:
+  crd:
+    spec:
+      names:
+        kind: VirtualServiceWithHost
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |-
+        package virtualservicewithhost
+        # spec.hosts does not exist
+        violation[{"msg": msg}] {
+          is_virtualservice(input.review.kind)
+          not contains_hosts(input.review.object.spec)
+          msg := "hosts does not exist"
+        }
+        # spec.hosts does not contain '*'
+        violation[{"msg": msg}] {
+          is_virtualservice(input.review.kind)
+          principal := input.review.object.spec.hosts[_]
+          principal == "*"
+          msg := "hosts[] cannot be '*'"
+        }
+        is_virtualservice(kind) {
+          kind.kind == "VirtualService"
+          kind.group == "networking.istio.io"
+        }
+        contains_hosts(spec) {
+          spec.hosts
+        }
