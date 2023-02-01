@@ -16,7 +16,7 @@ spec:
         # spec.hosts does not exist
         violation[{"msg": msg}] {
           is_virtualservice(input.review.kind)
-          not input.review.object.spec.hosts
+          not contains_hosts(input.review.object.spec)
           msg := "hosts does not exist"
         }
         # spec.hosts does not contain '*'
@@ -29,4 +29,7 @@ spec:
         is_virtualservice(kind) {
           kind.kind == "VirtualService"
           kind.group == "networking.istio.io"
+        }
+        contains_hosts(spec) {
+          spec.hosts
         }
